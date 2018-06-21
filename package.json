@@ -1,0 +1,22 @@
+{
+  "name": "vuex-revert",
+  "version": "1.0.0",
+  "description": "Vuex Revert",
+  "main": "dist/vuex-revert.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "emir92mm@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-commonjs": "^9.1.3"
+  }
+}
