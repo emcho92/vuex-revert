@@ -43,7 +43,7 @@ class PostActions {
 
 			await PostService().create(post);
 		} catch(err) {
-			dispatch('vuexRevert/revertMutation', revertMutation, { root: true }); // <- 3. Dispatch the revertMutation action with the mutation ID
+			dispatch('vuexRevert/revertMutation', toRevert, { root: true }); // <- 3. Dispatch the revertMutation action with the mutation ID
 		}
 	}
 }
@@ -61,7 +61,7 @@ Note:
 
 ## Use case
 
-A full use case/article is in the works. But for now, this best fits situations where you have lots of actions, and lots of mutations per action, which do state manipulation in advance, before receiving responses from you API source - so for projects implementing [Optimistic UI](https://www.smashingmagazine.com/2016/11/true-lies-of-optimistic-user-interfaces/) principles.
+A full use case/article is in the works, but for now, this best fits situations where you have lots of actions, and lots of mutations per action, which do state manipulation in advance, before receiving responses from you API source - so for projects implementing [Optimistic UI](https://www.smashingmagazine.com/2016/11/true-lies-of-optimistic-user-interfaces/) principles.
 When requests fails, having a quick, order conscious way of reverting the pre-executed mutations is a good thing.
 
 
