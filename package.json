@@ -12,6 +12,7 @@
   },
   "author": "emir92mm@gmail.com",
   "license": "MIT",
+  "keywords": ["vuejs", "vue", "vuex", "plugin", "store", "action", "mutation", "revert", "undo"],
   "dependencies": {
     "uuid": "^3.2.1"
   },
