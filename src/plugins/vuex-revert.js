@@ -41,13 +41,13 @@ export function vuexRevert(store) {
     const mutation = mutations.filter(mutation => mutation.id && mutation.id === id)[0];
 
     if (mutation) {
-      undo(mutation);
+      runMutations(mutation);
     }
   }
 
   // Reset the store and execute the saved mutations
-  function undo(mutation) {
-    mutations = mutations.filter(mutationObject => !mutationObject.id || mutationObject.id !== id);
+  function runMutations(mutation) {
+    mutations = mutations.filter(mutationObject => !mutationObject.id || mutationObject.id !== mutation.id);
     resetStore();
 
     mutations.forEach((mutationObject) => {
