@@ -1,7 +1,7 @@
 {
   "name": "vuex-revert",
   "version": "1.0.0",
-  "description": "Revert Vuex mutations on demand (WIP)",
+  "description": "Vuex plugin for easy mutation reverting (WIP)",
   "main": "dist/vuex-revert.js",
   "scripts": {
     "build": "rollup -c"
