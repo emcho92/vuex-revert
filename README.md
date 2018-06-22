@@ -34,18 +34,18 @@ import { revert } from 'vuex-revert';
 
 class PostActions {
 
-	@revert // <- 1. Add decorator
-	async createPost({ commit, dispatch }, payload) {
-		try {
-			// ... some own logic
-			var toRevert = commit(`CREATE_POST`, post); // <- 2. Target mutation (commit returns the mutation ID)
-			commit('someModule/ANOTHER_MUTATION', data, { root: true });
+  @revert // <- 1. Add decorator
+  async createPost({ commit, dispatch }, payload) {
+    try {
+      // ... some own logic
+      var toRevert = commit(`CREATE_POST`, post); // <- 2. Target mutation (commit returns the mutation ID)
+      commit('someModule/ANOTHER_MUTATION', data, { root: true });
 
-			await PostService().create(post);
-		} catch(err) {
-			dispatch('vuexRevert/revertMutation', toRevert, { root: true }); // <- 3. Dispatch the revertMutation action with the mutation ID
-		}
-	}
+      await PostService().create(post);
+    } catch(err) {
+      dispatch('vuexRevert/revertMutation', toRevert, { root: true }); // <- 3. Dispatch the revertMutation action with the mutation ID
+    }
+  }
 }
 ```
 
