@@ -1,10 +1,14 @@
 {
   "name": "vuex-revert",
   "version": "1.0.0",
-  "description": "Vuex Revert",
+  "description": "Revert Vuex mutations on demand (WIP)",
   "main": "dist/vuex-revert.js",
   "scripts": {
     "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emcho92/vuex-revert"
   },
   "author": "emir92mm@gmail.com",
   "license": "MIT",
