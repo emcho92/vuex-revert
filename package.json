@@ -1,6 +1,6 @@
 {
   "name": "vuex-revert",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vuex plugin for easy mutation reverting (WIP)",
   "main": "dist/vuex-revert.js",
   "scripts": {
@@ -12,7 +12,17 @@
   },
   "author": "emir92mm@gmail.com",
   "license": "MIT",
-  "keywords": ["vuejs", "vue", "vuex", "plugin", "store", "action", "mutation", "revert", "undo"],
+  "keywords": [
+    "vuejs",
+    "vue",
+    "vuex",
+    "plugin",
+    "store",
+    "action",
+    "mutation",
+    "revert",
+    "undo"
+  ],
   "dependencies": {
     "uuid": "^3.2.1"
   },
