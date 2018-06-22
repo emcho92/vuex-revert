@@ -1,7 +1,8 @@
 export function vuexRevert(store) {
   let mutations = [];
-  let tempMutation = {};
+  let initialState;
 
+  // Register own module for storing the mutation id and revert action
   store.registerModule('vuexRevert', {
     namespaced: true,
     state: {
@@ -19,50 +20,39 @@ export function vuexRevert(store) {
     }
   });
 
+  // Create a copy of the bare store state for reset purposes (after the dynamically registered module)
+  initialState = JSON.parse(JSON.stringify(store.state));
+
+  // Record mutations and append an id to mutations within decorated actions
   store.subscribe((mutation) => {
-    tempMutation = { mutation };
-
     if (mutation.type === 'vuexRevert/MUTATION_ID') {
-      tempMutation = { ...tempMutation, id: mutation.payload }
+      mutations[mutations.length - 1] = { ...mutations[mutations.length - 1], id: mutation.payload };
+    } else {
+      mutations.push(mutation);
     }
-
-    mutations.push(tempMutation);
-    tempMutation = {};
   });
 
   function resetStore() {
-    const state = store.state;
-    const resetState = {};
-
-    console.log(store.state);
-
-    Object.keys(state).forEach((key) => {
-      resetState[key] = null;
-    });
-
-    store.replaceState(resetState);
+    store.replaceState(initialState);
   }
 
+  // Remove the mutation to revert, from the list of all mutations
   function revert(id) {
     const mutation = mutations.filter(mutation => mutation.id && mutation.id === id)[0];
-    console.log(mutation);
 
     if (mutation) {
       undo(mutation);
     }
   }
 
+  // Reset the store and execute the saved mutations
   function undo(mutation) {
-    mutations = excludeById(mutation.id);
+    mutations = mutations.filter(mutationObject => !mutationObject.id || mutationObject.id !== id);
     resetStore();
 
     mutations.forEach((mutationObject) => {
-      store.commit(`${mutationObject.mutation.type}`, Object.assign({}, mutationObject.mutation.payload));
-      mutations = excludeById(mutationObject.id);
+      store.commit(`${mutationObject.type}`, mutationObject.payload);
+      mutations.pop();
     });
-  }
-
-  function excludeById(id) {
-    return mutations.filter(mutationObject => !mutationObject.id || mutationObject.id !== id);
   }
 }

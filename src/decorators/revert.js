@@ -11,8 +11,8 @@ export function revert(target, name, descriptor) {
         const id = uuid();
 
         const mutationArgs = ['vuexRevert/MUTATION_ID', id, { root: true }];
-        commit.apply(this, mutationArgs);
         commit.apply(this, arguments);
+        commit.apply(this, mutationArgs);
 
         return id;
       };
